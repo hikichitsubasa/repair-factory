@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SharedService} from "../../../layouts/shared.service";
 
 @Component({
   selector: 'admin-dashboard',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  pageTitle: string = 'ダッシュボード';
+  pageTitle: string = 'ホーム';
 
-  constructor() { }
+  constructor(private _sharedService: SharedService) {
+    this._sharedService.emitChange(this.pageTitle);
+  }
 
   ngOnInit() {
   }

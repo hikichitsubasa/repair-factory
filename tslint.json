@@ -31,14 +31,8 @@
     "member-access": false,
     "member-ordering": [
       true,
-      {
-        "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
-        ]
-      }
+      "static-before-instance",
+      "variables-before-functions"
     ],
     "no-arg": true,
     "no-bitwise": true,
@@ -49,16 +43,6 @@
       "time",
       "timeEnd",
       "trace"
-    ],
-    "no-construct": true,
-    "no-debugger": true,
-    "no-duplicate-super": true,
-    "no-empty": false,
-    "no-empty-interface": true,
-    "no-eval": true,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
     ],
     "no-misused-new": true,
     "no-non-null-assertion": true,

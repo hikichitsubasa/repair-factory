@@ -1,0 +1,20 @@
+<card title="本日の作業実績">
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <thead>
+      <tr>
+        <th>品番</th>
+        <th>補修内容</th>
+        <th>枚数/達成率</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let dailyTaskRecord of dailyTaskRecords">
+        <td>{{ dailyTaskRecord.number }}</td>
+        <td>{{ dailyTaskRecord.repair_content }}</td>
+        <td>{{ dailyTaskRecord.amount }}枚 / {{ dailyTaskRecord.progress }}%</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</card>

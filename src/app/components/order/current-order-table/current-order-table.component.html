@@ -1,0 +1,62 @@
+<card title="現在の受注一覧">
+    <ngx-datatable
+            class="material"
+            [headerHeight]="'auto'"
+            [columnMode]="'standard'"
+            [rowHeight]="'auto'"
+            [loadingIndicator]="loadingIndicator"
+            [rows]="rows"
+            [limit]="10"
+            [footerHeight]="50">
+        <ngx-datatable-column name="品番" prop="number">
+            <ng-template ngx-datatable-cell-template let-value="value" let-row="row" prop="品番">
+            <span
+                    title="Double click to edit"
+                    (dblclick)="editing[row.$$index + '-number'] = true"
+                    *ngIf="!editing[row.$$index + '-number']">
+                {{value}}
+            </span>
+                <input
+                        autofocus
+                        (blur)="updateValue($event, 'number', value, row)"
+                        *ngIf="editing[row.$$index + '-number']"
+                        type="text"
+                        [value]="value"
+                />
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="納期" prop="deadline">
+            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+            <span
+                    title="Double click to edit"
+                    (dblclick)="editing[row.$$index + '-deadline'] = true"
+                    *ngIf="!editing[row.$$index + '-deadline']">
+                {{ value }}
+            </span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="補修内容" prop="repair_content">
+            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+       <span
+               title="Double click to edit"
+               (dblclick)="editing[row.$$index + '-repair_content'] = true"
+               *ngIf="!editing[row.$$index + '-repair_content']">
+        {{value}}
+      </span>
+                <select
+                        *ngIf="editing[row.$$index + '-repair_content']"
+                        (change)="updateValue($event, 'repair_content', value, row)"
+                        [value]="value">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="進捗状況" prop="progress">
+            <ng-template ngx-datatable-cell-template let-value="value">
+                <progress max="100" value="{{ value }}"></progress>
+                {{ value }}%
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</card>

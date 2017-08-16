@@ -1,16 +1,25 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {SharedService} from "../shared.service";
 
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
-  styleUrls: ['./default.component.scss']
+  styleUrls: ['./default.component.scss'],
+  providers: [SharedService]
 })
 export class DefaultLayoutComponent implements OnInit {
   pageTitle: any;
   rtl: boolean = false;
   @Input() openedSidebar: boolean = false;
 
-  constructor() { }
+  constructor( private _sharedService: SharedService) {
+    _sharedService.changeEmitted$.subscribe(
+      title => {
+        this.pageTitle = title;
+      }
+    );
+  }
+
 
   ngOnInit() {
   }

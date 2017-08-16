@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "frontend"
+    "name": "repair-factory"
   },
   "apps": [
     {
@@ -9,7 +9,7 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico"
+        "assets/img/favicon.ico"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -19,6 +19,16 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "assets/css/font-awesome.min.css",
+        "assets/sass/bootstrap.scss",
+        "assets/sass/loader.scss",
+        "assets/sass/custom-material-theme.scss",
+        "../node_modules/angular-calendar/dist/css/angular-calendar.css",
+        "../node_modules/@swimlane/ngx-datatable/release/index.css",
+        "../node_modules/@swimlane/ngx-datatable/release/themes/material.css",
+        "../node_modules/@swimlane/ngx-datatable/release/assets/icons.css",
+        "../node_modules/leaflet/dist/leaflet.css",
+        "../node_modules/squeezebox/styles.css",
         "styles.css"
       ],
       "scripts": [],
@@ -51,7 +61,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "component": {}
   }
 }
