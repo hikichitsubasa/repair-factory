@@ -73,38 +73,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DailyTaskRecordComponent} from './components/task-record/daily-task-record/daily-task-record.component';
 import {DailyTaskRecordTableComponent} from './components/task-record/daily-task-record-table/daily-task-record-table.component';
 import {SalesBarChartComponent} from './components/charts/sales-bar-chart/sales-bar-chart.component';
-import {ModalComponent} from './components/modal/modal.component';
-import {DialogComponent} from './components/dialog/dialog.component';
-import {DialogResultComponent} from './components/dialog/dialog.component';
+import {HttpModule} from "@angular/http";
+import { CreateOrderComponent } from './components/order/create-order/create-order.component';
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-
-        DefaultLayoutComponent,
-        NavbarComponent,
-        SidebarComponent,
-        AdditionNavbarComponent,
-        FooterComponent,
-        LogoComponent,
-
-        AlertComponent,
-        BadgeComponent,
-        BreadcrumbComponent,
-        CardComponent,
-        FileComponent,
-        NIHTimelineComponent,
-        AdminDashboardComponent,
-        MainMenuComponent,
-        CurrentOrderTableComponent,
-        DailyTaskRecordComponent,
-        DailyTaskRecordTableComponent,
-        SalesBarChartComponent,
-        ModalComponent,
-        DialogComponent,
-        DialogResultComponent
-    ],
     imports: [
         BrowserModule,
         FormsModule,
@@ -148,10 +121,36 @@ import {DialogResultComponent} from './components/dialog/dialog.component';
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAU9f7luK3J31nurL-Io3taRKF7w9BItQE'
         }),
-        SqueezeBoxModule
+        SqueezeBoxModule,
+        HttpModule
+    ],
+    declarations: [
+        AppComponent,
+
+        DefaultLayoutComponent,
+        NavbarComponent,
+        SidebarComponent,
+        AdditionNavbarComponent,
+        FooterComponent,
+        LogoComponent,
+
+        AlertComponent,
+        BadgeComponent,
+        BreadcrumbComponent,
+        CardComponent,
+        FileComponent,
+        NIHTimelineComponent,
+        AdminDashboardComponent,
+        MainMenuComponent,
+        CurrentOrderTableComponent,
+        DailyTaskRecordComponent,
+        DailyTaskRecordTableComponent,
+        SalesBarChartComponent,
+        CreateOrderComponent,
     ],
     providers: [],
-    entryComponents: [DialogResultComponent],
+    entryComponents: [
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

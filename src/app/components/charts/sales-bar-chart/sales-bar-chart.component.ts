@@ -9,9 +9,9 @@ import {SharedService} from "../../../layouts/shared.service";
 export class SalesBarChartComponent implements OnInit {
   pageTitle: string = '売上推移グラフ';
 
-  constructor( private _sharedService: SharedService) {
-    this._sharedService.emitChange(this.pageTitle);
-  }
+  // constructor( private _sharedService: SharedService) {
+  //   this._sharedService.emitChange(this.pageTitle);
+  // }
 
   ngOnInit() {
   }

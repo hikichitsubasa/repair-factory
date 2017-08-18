@@ -3,9 +3,12 @@ import {RouterModule, Routes}         from '@angular/router';
 
 import {DefaultLayoutComponent} from './layouts/default/default.component';
 import {AdminDashboardComponent} from "./pages/admin/dashboard/dashboard.component";
+import {CreateOrderComponent} from "./components/order/create-order/create-order.component";
 
 const defaultRoutes: Routes = [
-  {path: 'admin/dashboard', component: AdminDashboardComponent}
+  {path: 'admin/dashboard', component: AdminDashboardComponent},
+  {path: 'admin/create-order', component: CreateOrderComponent}
+
 ];
 
 const routes: Routes = [

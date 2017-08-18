@@ -1,0 +1,99 @@
+<card title="新規オーダー登録">
+  <div class="form-group row">
+    <label for="inputProductNumber" class="col-sm-3 col-md-2 col-form-label mb-0">商品品番</label>
+    <div class="col-sm-9 col-md-3">
+      <md-input-container class="mb-2">
+        <input mdInput id="inputProductNumber" placeholder="" type="text" value="">
+      </md-input-container>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputOrderDate" class="col-sm-3 col-md-2 col-form-label mb-0">受注日</label>
+    <div class="col-sm-9 col-md-3">
+      <md-input-container class="mb-2">
+        <input mdInput id="inputOrderDate" placeholder="" [mdDatepicker]="orderDate">
+        <button mdSuffix [mdDatepickerToggle]="orderDate"></button>
+      </md-input-container>
+      <md-datepicker #orderDate touchUi="true"></md-datepicker>
+    </div>
+    <label for="inputDeadline" class="col-sm-3 col-md-2 col-form-label mb-0">納品日</label>
+    <div class="col-sm-9 col-md-3">
+      <md-input-container class="mb-2">
+        <input mdInput id="inputDeadline" placeholder="" [mdDatepicker]="deadline">
+        <button mdSuffix [mdDatepickerToggle]="deadline"></button>
+      </md-input-container>
+      <md-datepicker #deadline touchUi="true"></md-datepicker>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputClient" class="col-sm-3 col-md-2 col-form-label mb-0">取引先名</label>
+    <div class="col-sm-9 col-md-4">
+      <md-select class="mb-2" id="inputClient"
+      >
+        <md-option></md-option>
+        <md-option *ngFor="let client of clients" [value]="client.id">
+          {{ client.name }}
+        </md-option>
+      </md-select>
+    </div>
+    <div class="col-sm-3 col-md-2">
+      <button md-raised-button>新規取引先追加</button>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputRepairContext" class="col-sm-3 col-md-2 col-form-label mb-0">補修内容</label>
+    <div class="col-sm-9 col-md-4">
+      <md-select class="mb-2" id="inputRepairContext"
+      >
+        <md-option></md-option>
+        <md-option *ngFor="let repairContext of repairContexts" [value]="repairContext.id">
+          {{ repairContext.context }}
+        </md-option>
+      </md-select>
+    </div>
+    <div class="col-sm-3 col-md-2">
+      <button md-raised-button>新規補修内容追加</button>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputAmount" class="col-sm-3 col-md-1 col-form-label mb-0">枚数</label>
+    <div class="col-sm-9 col-md-2">
+      <md-input-container class="mb-2">
+        <input mdInput id="inputAmount" placeholder="" type="number" min="0">
+      </md-input-container>
+    </div>
+    <label for="inputUnitPrice" class="col-sm-3 col-md-1 col-form-label mb-0">単価</label>
+    <div class="col-sm-9 col-md-2">
+      <md-input-container class="mb-2">
+        <input mdInput id="inputUnitPrice" placeholder="" type="number" min="0">
+      </md-input-container>
+    </div>
+    <label for="inputTotalAmount" class="col-sm-3 col-md-2 col-form-label mb-0">想定金額</label>
+    <div class="col-sm-9 col-md-2">
+      <md-input-container class="mb-2">
+        <input mdInput id="inputTotalAmount" placeholder="" type="number" min="0">
+      </md-input-container>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="radioWorkPlace" class="col-sm-3 col-md-1 col-form-label mb-0">作業場所</label>
+    <md-radio-group name="ngModel-options" [(ngModel)]="workPlace" class="column-layout">
+      <md-radio-button id="radioWorkPlace" *ngFor="let workPlace of workPlaces" [value]="workPlace.id" [checked]="i === 0">
+        {{workPlace.place}}
+      </md-radio-button>
+    </md-radio-group>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-sm-3 col-md-2"></div>
+    <div class="col-sm-9 col-md-10">
+      <button md-raised-button color="warn">Submit</button>
+    </div>
+  </div>
+</card>

@@ -10,9 +10,12 @@ export class AdminDashboardComponent implements OnInit {
 
   pageTitle: string = 'ホーム';
 
-  constructor(private _sharedService: SharedService) {
+  constructor(
+      private _sharedService: SharedService,
+  ) {
     this._sharedService.emitChange(this.pageTitle);
   }
+
 
   ngOnInit() {
   }
