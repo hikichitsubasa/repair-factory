@@ -39,6 +39,7 @@ export class TaskRecordNewComponent implements OnInit {
                 private _orderService: OrderService,
                 public datepipe: DatePipe,
                 private route: ActivatedRoute) {
+        console.log(this.taskRecord);
 
     }
 
@@ -87,11 +88,12 @@ export class TaskRecordNewComponent implements OnInit {
     }
 
 
-    createTaskRecord(taskRecord, currentOrder, createTaskRecordForm) {
-        taskRecord.order_id = currentOrder.id;
+    createTaskRecord(taskRecord, createTaskRecordForm) {
+        taskRecord.order_id = this.id;
         taskRecord.date = this.datepipe.transform(taskRecord.date, 'yyyy-MM-dd');
         this.createTaskRecord$.emit(this.taskRecord);
 
+        // Formリセット
         taskRecord.date = this.today;
         taskRecord.time_table_id = '';
         taskRecord.worker_id = '';

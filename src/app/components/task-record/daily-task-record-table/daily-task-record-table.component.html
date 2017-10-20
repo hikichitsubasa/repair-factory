@@ -2,7 +2,6 @@
              [rows]="10"
              [paginator]="true"
              [rowsPerPageOptions]="[5, 10, 20]"
-             [globalFilter]="gb" #dt
              selectionMode="single"
              [(selection)]="selectedTaskRecord"
              (onRowClick)="goToTaskRecord($event)"
