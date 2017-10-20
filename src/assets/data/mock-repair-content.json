@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "repair_content": "飛び込み",
+    "repair_content_en": "Tobikomi"
+  },
+  {
+    "id": 2,
+    "repair_content": "汚れ",
+    "repair_content_en": "Yogore"
+  },
+  {
+    "id": 3,
+    "repair_content": "キズ",
+    "repair_content_en": "Kizu"
+  },
+  {
+    "id": 4,
+    "repair_content": "色差",
+    "repair_content_en": "Irosa"
+  }
+]

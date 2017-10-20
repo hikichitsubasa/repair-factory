@@ -1,62 +1,50 @@
-<card title="現在の受注一覧">
-    <ngx-datatable
-            class="material"
-            [headerHeight]="'auto'"
-            [columnMode]="'standard'"
-            [rowHeight]="'auto'"
-            [loadingIndicator]="loadingIndicator"
-            [rows]="rows"
-            [limit]="10"
-            [footerHeight]="50">
-        <ngx-datatable-column name="品番" prop="number">
-            <ng-template ngx-datatable-cell-template let-value="value" let-row="row" prop="品番">
-            <span
-                    title="Double click to edit"
-                    (dblclick)="editing[row.$$index + '-number'] = true"
-                    *ngIf="!editing[row.$$index + '-number']">
-                {{value}}
-            </span>
-                <input
-                        autofocus
-                        (blur)="updateValue($event, 'number', value, row)"
-                        *ngIf="editing[row.$$index + '-number']"
-                        type="text"
-                        [value]="value"
-                />
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="納期" prop="deadline">
-            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-            <span
-                    title="Double click to edit"
-                    (dblclick)="editing[row.$$index + '-deadline'] = true"
-                    *ngIf="!editing[row.$$index + '-deadline']">
-                {{ value }}
-            </span>
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="補修内容" prop="repair_content">
-            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-       <span
-               title="Double click to edit"
-               (dblclick)="editing[row.$$index + '-repair_content'] = true"
-               *ngIf="!editing[row.$$index + '-repair_content']">
-        {{value}}
-      </span>
-                <select
-                        *ngIf="editing[row.$$index + '-repair_content']"
-                        (change)="updateValue($event, 'repair_content', value, row)"
-                        [value]="value">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="進捗状況" prop="progress">
-            <ng-template ngx-datatable-cell-template let-value="value">
-                <progress max="100" value="{{ value }}"></progress>
-                {{ value }}%
-            </ng-template>
-        </ngx-datatable-column>
-    </ngx-datatable>
-</card>
+<p-dataTable [value]="currentOrders"
+             [rows]="10"
+             [paginator]="true"
+             [rowsPerPageOptions]="[5, 10, 20]"
+             selectionMode="single"
+             [(selection)]="selectedOrder"
+             (onRowClick)="goToTaskRecord($event)"
+             [responsive]="true"
+             class="current-order-table">
+    <p-header>
+        <div class="ui-widget-header ui-helper-clearfix"
+             style="padding:4px 10px;border: 0 none;">
+            <button
+                    class="btn btn-primary btn-sm"
+                    routerLink="/admin/order-new"
+                    routerLinkActive="active"
+                    style="float: left;"><i class="fa fa-plus-circle"> 新規オーダー登録</i>
+            </button>
+            <!--<div class="" style="float: right;">-->
+                <!--<i class="fa fa-search" style="margin:4px 4px 0 0"></i>-->
+                <!--<input #gb type="text" pInputText size="30" placeholder="フィルター">-->
+            <!--</div>-->
+        </div>
+    </p-header>
+    <p-column field="product_number" header="品番"></p-column>
+    <p-column field="delivery_date" header="納期" [sortable]="true">
+        <ng-template let-order="rowData" pTemplate="body">
+            {{ order.delivery_date | date:'MM/dd' }}
+        </ng-template>
+    </p-column>
+    <p-column field="content" header="補修内容" [sortable]="true"></p-column>
+    <p-column field="progress" header="進捗" [sortable]="true">
+        <ng-template let-col let-order="rowData" pTemplate="body">
+            <p-progressBar [value]="order.progress * 100 | number:'1.1-2'"></p-progressBar>
+        </ng-template>
+    </p-column>
+    <p-column>
+        <ng-template let-col let-order="rowData" pTemplate="body">
+            <button type="button" class="btn btn-primary btn-sm"
+                    (click)="onCompleteOrder(order)">納品完了
+            </button>
+        </ng-template>
+    </p-column>
+    <!--<p-column>-->
+        <!--<ng-template pTemplate="header" let-order="rowData" pTemplate="body">-->
+            <!--<button class="btn btn-info btn-sm"-->
+                    <!--(click)="goToEdit(order)"><i class="fa fa-pencil"></i></button>-->
+        <!--</ng-template>-->
+    <!--</p-column>-->
+</p-dataTable>

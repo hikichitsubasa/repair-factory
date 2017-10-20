@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+table {
+    font-size: 0.8rem;
+    text-align: center !important;
+}
+
+th{
+    text-align: center;
+}
+
+#order-new .mat-list-item-content{
+    display: inline-block;
+}

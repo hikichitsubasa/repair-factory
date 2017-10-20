@@ -7,6 +7,9 @@
       </md-input-container>
     </div>
   </div>
+
+  <hr>
+
   <div class="form-group row">
     <label for="inputOrderDate" class="col-sm-3 col-md-2 col-form-label mb-0">受注日</label>
     <div class="col-sm-9 col-md-3">
@@ -26,6 +29,8 @@
     </div>
   </div>
 
+  <hr>
+
   <div class="form-group row">
     <label for="inputClient" class="col-sm-3 col-md-2 col-form-label mb-0">取引先名</label>
     <div class="col-sm-9 col-md-4">
@@ -42,14 +47,28 @@
     </div>
   </div>
 
+  <hr>
+
   <div class="form-group row">
-    <label for="inputRepairContext" class="col-sm-3 col-md-2 col-form-label mb-0">補修内容</label>
+    <label class="col-sm-3 col-md-2 col-form-label mb-0">作業場所</label>
+    <md-radio-group name="ngModel-options" [(ngModel)]="workPlace" class="col-sm-9 col-md-10">
+      <md-radio-button  value="1">本社</md-radio-button>
+      <md-radio-button  value="2">指定先工場</md-radio-button>
+      <md-input-container class="mb-2 col-md-4 col-sm-4">
+        <input mdInput  placeholder="指定先工場を入力">
+      </md-input-container>
+    </md-radio-group>
+  </div>
+
+  <hr>
+
+  <div class="form-group row">
+    <label for="inputContent" class="col-sm-3 col-md-2 col-form-label mb-0">補修内容</label>
     <div class="col-sm-9 col-md-4">
-      <md-select class="mb-2" id="inputRepairContext"
-      >
+      <md-select class="mb-2" id="inputContent">
         <md-option></md-option>
-        <md-option *ngFor="let repairContext of repairContexts" [value]="repairContext.id">
-          {{ repairContext.context }}
+        <md-option *ngFor="let content of contents" [value]="content.id">
+          {{ content.content }}
         </md-option>
       </md-select>
     </div>
@@ -58,8 +77,10 @@
     </div>
   </div>
 
+  <hr>
+
   <div class="form-group row">
-    <label for="inputAmount" class="col-sm-3 col-md-1 col-form-label mb-0">枚数</label>
+    <label for="inputAmount" class="col-sm-3 col-md-2 col-form-label mb-0">枚数</label>
     <div class="col-sm-9 col-md-2">
       <md-input-container class="mb-2">
         <input mdInput id="inputAmount" placeholder="" type="number" min="0">
@@ -79,21 +100,22 @@
     </div>
   </div>
 
+  <hr>
+
   <div class="form-group row">
-    <label for="radioWorkPlace" class="col-sm-3 col-md-1 col-form-label mb-0">作業場所</label>
-    <md-radio-group name="ngModel-options" [(ngModel)]="workPlace" class="column-layout">
-      <md-radio-button id="radioWorkPlace" *ngFor="let workPlace of workPlaces" [value]="workPlace.id" [checked]="i === 0">
-        {{workPlace.place}}
-      </md-radio-button>
-    </md-radio-group>
+    <label class="col-sm-3 col-md-2 col-form-label mb-0">備考</label>
+    <md-input-container class="col-sm-12 col-md-8">
+      <textarea mdInput placeholder=""></textarea>
+    </md-input-container>
   </div>
+
+  <hr>
 
 
 
   <div class="row">
-    <div class="col-sm-3 col-md-2"></div>
     <div class="col-sm-9 col-md-10">
-      <button md-raised-button color="warn">Submit</button>
+      <button md-raised-button color="primary">オーダー登録</button>
     </div>
   </div>
 </card>

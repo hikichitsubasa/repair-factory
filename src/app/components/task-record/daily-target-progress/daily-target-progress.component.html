@@ -1,0 +1,17 @@
+<p class="mb-1">
+    <p-calendar [(ngModel)]="date" name="date" (onSelect)="changeDate(date)"
+                dateFormat="yy-mm-dd" showButtonBar="true" [showIcon]="true"></p-calendar>
+    <!--{{ dailyQuantity + dailyOvertimeQuantity }} 枚 / {{ order.daily_target_quantity }} 枚-->
+</p>
+<div class="progress">
+    <div *ngIf="(dailyQuantity + dailyOvertimeQuantity ) / order.daily_target_quantity * 100 > 100 ; else normal;">
+        <p-progressBar
+                [value]="100">
+        </p-progressBar>
+    </div>
+    <ng-template #normal>
+        <p-progressBar
+                [value]="(dailyQuantity + dailyOvertimeQuantity ) / order.daily_target_quantity * 100 | number: '1.0-2'">
+        </p-progressBar>
+    </ng-template>
+</div>

@@ -1,0 +1,20 @@
+<p-dataTable [value]="contents"
+             [rows]="20"
+             [paginator]="true"
+             [rowsPerPageOptions]="[5, 10, 20]"
+             [editable]="true"
+             (onEditComplete)="updateContent($event)"
+             [resizableColumns]="true"
+             class="content-list-table">
+    <p-header>
+        <div class="ui-widget-header ui-helper-clearfix"
+             style="padding:4px 10px;border: 0 none;">
+            <app-content-new (createContent$)="createContent($event)"></app-content-new>
+        </div>
+    </p-header>
+    <p-column field="content" header="補修内容" [style]="{'width': '75%'}"
+              [sortable]="true"
+              [editable]="true">
+    </p-column>
+</p-dataTable>
+

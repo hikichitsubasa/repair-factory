@@ -1,0 +1,14 @@
+<!--<ng-template *ngIf="isReport; else notReport">-->
+<button class="btn btn-secondary"
+        disabled
+        *ngIf="isReport">
+    <i class="fa fa-envelope-o"> 送信済み</i>
+</button>
+<!--</ng-template>-->
+<!--<ng-template #notReport>-->
+<button class="btn btn-success"
+        *ngIf="!isReport"
+        (click)="createDailyReport()">
+    <i class="fa fa-envelope-o"> 送信</i>
+</button>
+<!--</ng-template>-->

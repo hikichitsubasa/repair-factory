@@ -1,0 +1,19 @@
+<p-dataTable [value]="clients"
+             [rows]="20"
+             [paginator]="true"
+             [rowsPerPageOptions]="[5, 10, 20]"
+             [editable]="true"
+             (onEditComplete)="updateClient($event)"
+             [resizableColumns]="true"
+             class="client-list-table">
+  <p-header>
+    <div class="ui-widget-header ui-helper-clearfix"
+         style="padding:4px 10px;border: 0 none;">
+      <app-client-new (createClient$)="createClient($event)"></app-client-new>
+    </div>
+  </p-header>
+  <p-column field="name" header="取引先" [style]="{'width': '75%'}"
+            [sortable]="true"
+            [editable]="true">
+  </p-column>
+</p-dataTable>

@@ -1,0 +1,15 @@
+<form #createClientForm (submit)="createClient(newClient);createClientForm.reset()">
+    <div class="w-50 d-inline-block">
+        <input type="text"
+               name="name"
+               class="form-control"
+               placeholder="新規取引先名を入力"
+               [(ngModel)]="newClient.name">
+    </div>
+    <div class="d-inline-block">
+        <button type="submit" class="btn btn-primary btn-sm">追加</button>
+        <button type="button" class="btn btn-secondary btn-sm"
+                (click)="hideForm()">キャンセル</button>
+    </div>
+
+</form>

@@ -21,4 +21,19 @@ export class MainMenuComponent implements OnInit {
     this.getMainMenuItems();
   }
 
+  toggle(event: Event, item: any, el: any) {
+    event.preventDefault();
+
+    let items: any[] = el.mainMenuItems;
+
+    if (item.active) {
+      item.active = false;
+    } else {
+      for (let i = 0; i < items.length; i++) {
+        items[i].active = false;
+      }
+      item.active = true;
+    }
+  }
+
 }

@@ -1,24 +1,33 @@
 <div class="row">
-    <div class="col-lg-6 col-md-6 col-xl-3">
+    <div class="col-lg-4 col-md-4">
         <card [bgColor]="'warning'" class="info-card">
             <div class="title text-uppercase">今月の売上</div>
-            <div class="count">$ 10000</div>
+            <div class="count">$ {{ monthlySales.totalPrice + monthlySales.totalPriceOvertime }}</div>
             <md-icon>equalizer</md-icon>
         </card>
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-xl-12">
-        <current-order-table></current-order-table>
+    <div class="col-lg-6 col-md-6">
+        <card title="現在のオーダー一覧">
+            <current-order-table></current-order-table>
+        </card>
+    </div>
+    <div class="col-lg-6 col-md-6">
+        <card title="本日の作業実績">
+            <daily-task-record-table></daily-task-record-table>
+        </card>
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-xl-10">
-        <daily-task-record-table></daily-task-record-table>
+    <div class="col-lg-4 col-md-4">
+        <card title="月間残業時間数">
+            <app-monthly-overtime-list></app-monthly-overtime-list>
+        </card>
     </div>
-</div>
-<div class="row">
-    <div class="col-lg-6 col-md-6 col-xl-6">
-        <sales-bar-chart></sales-bar-chart>
+    <div class="col-lg-6 col-md-6">
+        <card title="売上推移">
+            <sales-bar-chart></sales-bar-chart>
+        </card>
     </div>
 </div>

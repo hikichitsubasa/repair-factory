@@ -1,0 +1,312 @@
+<card title="オーダーフォーム">
+    <form id="order-new">
+        <div class="form-group row">
+            <label for="inputProductNumber" class="col-sm-3 col-md-2 col-form-label mb-0">商品品番</label>
+            <div class="col-sm-9 col-md-3">
+                <md-input-container class="mb-2" *ngIf="!edit; else editProductNumber">
+                    <input mdInput id="inputProductNumber" placeholder="" type="text"
+                           name="product_number" [(ngModel)]="newOrder.product_number">
+                </md-input-container>
+                <ng-template #editProductNumber>
+                    <md-input-container class="mb-2">
+                        <input mdInput id="editProductNumber" placeholder="" type="text"
+                               name="product_number" [(ngModel)]="order.product_number">
+                    </md-input-container>
+                </ng-template>
+
+
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="form-group row">
+            <div class="col-lg-4 col-md-4">
+                <label for="inputOrderDate" class="col-form-label mb-0">受注日</label>
+                <div class="" *ngIf="!edit; else editOrderDate">
+                    <md-input-container class="mb-2">
+                        <input mdInput id="inputOrderDate" placeholder="" [mdDatepicker]="orderDate"
+                               name="order_date" [(ngModel)]="newOrder.order_date"
+                        >
+                        <button mdSuffix [mdDatepickerToggle]="orderDate"></button>
+                    </md-input-container>
+                    <md-datepicker #orderDate touchUi="true"
+                                   (dateInput)="showDate(newOrder.order_date)"></md-datepicker>
+                </div>
+                <ng-template #editOrderDate>
+                    <div class="">
+                        <md-input-container class="mb-2">
+                            <input mdInput id="editOrderDate" placeholder="" [mdDatepicker]="editOrderDate"
+                                   name="order_date" [(ngModel)]="order.order_date"
+                            >
+                            <button mdSuffix [mdDatepickerToggle]="editOrderDate"></button>
+                        </md-input-container>
+                        <md-datepicker #editOrderDate touchUi="true"
+                                       (dateInput)="showDate(order.order_date)"></md-datepicker>
+                    </div>
+                </ng-template>
+            </div>
+
+
+            <div class="col-lg-4 col-md-4">
+                <label for="inputDeliveryDate" class="col-form-label mb-0">納品日</label>
+                <div class="" *ngIf="!edit; else editDeliveryDate">
+                    <md-input-container class="mb-2">
+                        <input mdInput id="inputDeliveryDate" placeholder="" [mdDatepicker]="delivery_date"
+                               name="delivery_date" [(ngModel)]="newOrder.delivery_date">
+                        <button mdSuffix [mdDatepickerToggle]="delivery_date"></button>
+                    </md-input-container>
+                    <md-datepicker #delivery_date touchUi="true"></md-datepicker>
+                </div>
+                <ng-template #editDeliveryDate>
+                    <div class="">
+                        <md-input-container class="mb-2">
+                            <input mdInput id="editDeliveryDate" placeholder="" [mdDatepicker]="delivery_date"
+                                   name="delivery_date" [(ngModel)]="order.delivery_date">
+                            <button mdSuffix [mdDatepickerToggle]="delivery_date"></button>
+                        </md-input-container>
+                        <md-datepicker #delivery_date touchUi="true"></md-datepicker>
+                    </div>
+                </ng-template>
+            </div>
+
+            <div class="col-lg-4 col-md-4">
+                <label for="inputStartDate" class="col-form-label mb-0">作業開始日</label>
+                <div class="" *ngIf="!edit; else editStartDate">
+                    <md-input-container class="mb-2">
+                        <input mdInput id="inputStartDate" placeholder="" [mdDatepicker]="start_date"
+                               name="start_date" [(ngModel)]="newOrder.start_date">
+                        <button mdSuffix [mdDatepickerToggle]="start_date"></button>
+                    </md-input-container>
+                    <md-datepicker #start_date touchUi="true"></md-datepicker>
+                </div>
+                <ng-template #editStartDate>
+                    <div class="">
+                        <md-input-container class="mb-2">
+                            <input mdInput id="editStartDate" placeholder="" [mdDatepicker]="start_date"
+                                   name="start_date" [(ngModel)]="order.start_date">
+                            <button mdSuffix [mdDatepickerToggle]="start_date"></button>
+                        </md-input-container>
+                        <md-datepicker #start_date touchUi="true"></md-datepicker>
+                    </div>
+                </ng-template>
+            </div>
+
+
+        </div>
+
+        <hr>
+
+        <div class="form-group row">
+            <label for="inputClientId" class="col-sm-3 col-md-2 col-form-label mb-0">取引先名</label>
+            <div class="col-sm-9 col-md-4" *ngIf="!edit; else editClientId">
+                <md-select class="mb-2" id="inputClientId" name="client_id"
+                           [(ngModel)]="newOrder.client_id" [style.width]="'100%'">
+                    <md-option disabled selected>取引先名を選択</md-option>
+                    <md-option *ngFor="let client of clients" [value]="client.id">
+                        {{ client.name }}
+                    </md-option>
+                </md-select>
+            </div>
+            <ng-template #editClientId>
+                <div class="col-sm-9 col-md-4">
+                    <md-select class="mb-2" id="editClientId" name="client_id"
+                               [(ngModel)]="order.client_id" [style.width]="'100%'">
+                        <md-option disabled selected>取引先名を選択</md-option>
+                        <md-option *ngFor="let client of clients" [value]="client.id">
+                            {{ client.name }}
+                        </md-option>
+                    </md-select>
+                </div>
+            </ng-template>
+            <div class="col-sm-3 col-md-6">
+                <button md-raised-button (click)="showCreateClientForm = true">新規取引先追加</button>
+                <div *ngIf="showCreateClientForm">
+                    <app-client-new (createClient$)="createClient($event)"
+                                    (hideForm$)="showCreateClientForm = false"></app-client-new>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="row">
+            <div class="form-group col-lg-6 col-md-6 col-sm-6 no-gutters">
+                <label class="col-sm-6 col-md-4 col-form-label mb-0">作業場所</label>
+                <div class="col-sm-6 col-md-7 d-inline-block" *ngIf="!edit; else editWorkPlace">
+                    <md-input-container class="mb-2">
+                        <input mdInput id="inputWorkPlace" placeholder="" type="text"
+                               name="work_place" [(ngModel)]="newOrder.work_place">
+                    </md-input-container>
+                </div>
+                <ng-template #editWorkPlace>
+                    <div class="col-sm-6 col-md-7 d-inline-block">
+                        <md-input-container class="mb-2">
+                            <input mdInput id="editWorkPlace" placeholder="" type="text"
+                                   name="work_place" [(ngModel)]="order.work_place">
+                        </md-input-container>
+                    </div>
+                </ng-template>
+            </div>
+            <div class="form-group col-lg-6 col-md-6 col-sm-6 no-gutters" *ngIf="!edit; else editIsTeamTask">
+                <label class="col-sm-6 col-md-4 col-form-label mb-0">作業割当</label>
+                <md-radio-group name="is_team_task" [(ngModel)]="newOrder.is_team_task"
+                                class="col-sm-6 col-md-8">
+                    <md-radio-button value="1" >個人</md-radio-button>
+                    <md-radio-button value="2">チーム制</md-radio-button>
+                </md-radio-group>
+            </div>
+            <ng-template #editIsTeamTask>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 no-gutters">
+                    <label class="col-sm-6 col-md-4 col-form-label mb-0">作業割当</label>
+                    <md-radio-group name="is_team_task" [(ngModel)]="order.is_team_task"
+                                    class="col-sm-6 col-md-8">
+                        <md-radio-button value="1" >個人</md-radio-button>
+                        <md-radio-button value="2">チーム制</md-radio-button>
+                    </md-radio-group>
+                </div>
+            </ng-template>
+        </div>
+        <hr>
+
+        <div class="form-group row">
+            <label for="inputContent" class="col-sm-3 col-md-2 col-form-label mb-0">補修内容</label>
+            <div class="col-sm-9 col-md-4" *ngIf="!edit; else editContentId">
+                <md-select class="mb-2" id="inputContent"
+                           [(ngModel)]="newOrder.content_id" [style.width]="'100%'" name="content_id">
+                    <md-option disabled>補修内容を選択</md-option>
+                    <md-option *ngFor="let content of contents" [value]="content.id">
+                        {{ content.content }}
+                    </md-option>
+                </md-select>
+            </div>
+            <ng-template #editContentId>
+                <div class="col-sm-9 col-md-4">
+                    <md-select class="mb-2" id="editContent"
+                               [(ngModel)]="order.content_id" [style.width]="'100%'" name="content_id">
+                        <md-option disabled>補修内容を選択</md-option>
+                        <md-option *ngFor="let content of contents" [value]="content.id">
+                            {{ content.content }}
+                        </md-option>
+                    </md-select>
+                </div>
+            </ng-template>
+            <div class="col-sm-3 col-md-6">
+                <button md-raised-button (click)="showCreateContentForm = true">新規補修内容追加</button>
+                <div *ngIf="showCreateContentForm">
+                    <app-content-new (createContent$)="createContent($event)"
+                                     (hideForm$)="showCreateContentForm = false"></app-content-new>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="form-group row">
+            <label for="inputQuantity" class="col-sm-2 col-md-2 col-form-label mb-0">受注枚数</label>
+            <div class="col-sm-9 col-md-2" *ngIf="!edit; else editQuantity">
+                <md-input-container class="mb-2">
+                    <input mdInput name="quantity" [(ngModel)]="newOrder.quantity" id="inputQuantity" placeholder=""
+                           type="number" min="0">
+                    <span mdSuffix>枚</span>
+                </md-input-container>
+            </div>
+            <ng-template #editQuantity>
+                <div class="col-sm-9 col-md-2">
+                    <md-input-container class="mb-2">
+                        <input mdInput name="quantity" [(ngModel)]="order.quantity" id="editQuantity" placeholder=""
+                               type="number" min="0">
+                        <span mdSuffix>枚</span>
+                    </md-input-container>
+                </div>
+            </ng-template>
+            <label for="inputDailyTargetQuantity"
+                   class="col-sm-3 offset-md-1 col-md-2 col-form-label mb-0">1日の目標枚数</label>
+            <div class="col-sm-9 col-md-2" *ngIf="!edit; else editDailyTargetQuantity">
+                <md-input-container class="mb-2">
+                    <input mdInput name="daily_target_quantity" [(ngModel)]="newOrder.daily_target_quantity"
+                           id="inputDailyTargetQuantity" placeholder=""
+                           type="number"
+                           min="0">
+                    <span mdSuffix>枚</span>
+                </md-input-container>
+            </div>
+            <ng-template #editDailyTargetQuantity>
+                <div class="col-sm-9 col-md-2">
+                    <md-input-container class="mb-2">
+                        <input mdInput name="daily_target_quantity" [(ngModel)]="order.daily_target_quantity"
+                               id="editDailyTargetQuantity" placeholder=""
+                               type="number"
+                               min="0">
+                        <span mdSuffix>枚</span>
+                    </md-input-container>
+                </div>
+            </ng-template>
+        </div>
+        <div class="form-group row">
+            <label for="inputUnitPrice" class="col-sm-2 col-md-2 col-form-label mb-0">単価</label>
+            <div class="col-sm-9 col-md-2" *ngIf="!edit; else editUnitPrice">
+                <md-input-container class="mb-2">
+                    <input mdInput name="unit_price" [(ngModel)]="newOrder.unit_price" id="inputUnitPrice"
+                           placeholder="" type="number" min="0">
+                    <span mdSuffix>$</span>
+                </md-input-container>
+            </div>
+            <ng-template #editUnitPrice>
+                <div class="col-sm-9 col-md-2">
+                    <md-input-container class="mb-2">
+                        <input mdInput name="unit_price" [(ngModel)]="order.unit_price" id="editUnitPrice"
+                               placeholder="" type="number" min="0">
+                        <span mdSuffix>$</span>
+                    </md-input-container>
+                </div>
+            </ng-template>
+            <label for="inputTotalPrice" class="col-sm-3 offset-md-1 col-md-2 col-form-label mb-0">想定金額</label>
+            <div class="col-sm-9 col-md-2" *ngIf="!edit; else editTotalPrice">
+                <md-input-container class="mb-2">
+                    <input mdInput name="total_price" [(ngModel)]="newOrder.total_price" id="inputTotalPrice"
+                           placeholder="想定金額 : {{ newOrder.unit_price * newOrder.quantity }}$" type="number" min="0">
+                    <span mdSuffix>$</span>
+                </md-input-container>
+            </div>
+            <ng-template #editTotalPrice>
+                <div class="col-sm-9 col-md-2">
+                    <md-input-container class="mb-2">
+                        <input mdInput name="total_price" [(ngModel)]="order.total_price" id="editTotalPrice"
+                               placeholder="想定金額 : {{ order.unit_price * order.quantity }}$" type="number" min="0">
+                        <span mdSuffix>$</span>
+                    </md-input-container>
+                </div>
+            </ng-template>
+        </div>
+
+        <hr>
+
+        <!--<div class="form-group row">-->
+            <!--<label class="col-sm-3 col-md-2 col-form-label mb-0">備考</label>-->
+            <!--<md-input-container class="col-sm-12 col-md-8" *ngIf="!edit; else editNote">-->
+                <!--<textarea mdInput name="note" [(ngModel)]="newOrder.note"></textarea>-->
+            <!--</md-input-container>-->
+            <!--<ng-template #editNote>-->
+                <!--<md-input-container class="col-sm-12 col-md-8">-->
+                    <!--<textarea mdInput name="note" [(ngModel)]="order.note"></textarea>-->
+                <!--</md-input-container>-->
+            <!--</ng-template>-->
+        <!--</div>-->
+
+        <!--<hr>-->
+
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12" *ngIf="!edit">
+                <button class="btn btn-primary" (click)="createOrder(newOrder)">オーダー登録</button>
+                <button class="btn btn-default" (click)="goBack()">キャンセル</button>
+            </div>
+            <div class="col-sm-12 col-md-12" *ngIf="edit">
+                <button class="btn btn-primary" (click)="updateOrder(order)">オーダー更新</button>
+                <button class="btn btn-default" (click)="goBack()">キャンセル</button>
+                <button class="btn btn-danger pull-right"
+                        (click)="deleteOrder(order)"><i class="fa fa-trash-o"></i> オーダー取り消し</button>
+            </div>
+        </div>
+    </form>
+</card>

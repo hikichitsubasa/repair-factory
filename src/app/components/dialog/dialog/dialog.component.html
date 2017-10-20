@@ -1,0 +1,10 @@
+<p-dialog
+        [(visible)]="display"
+        [modal]="true"
+        [dismissableMask]="true"
+        [breakpoint]="1000"
+
+>
+    <create-order></create-order>
+</p-dialog>
+<button type="text" (click)="showDialog()" pButton class="btn btn-primary btn-sm" >新規オーダー登録</button>

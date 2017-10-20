@@ -1,0 +1,14 @@
+<form #createContentForm (submit)="createContent(newContent);createContentForm.reset()">
+    <div class="w-50 d-inline-block">
+        <input type="text"
+               name="content"
+               class="form-control"
+               placeholder="新規補修内容を入力"
+               [(ngModel)]="newContent.content">
+    </div>
+    <div class="d-inline-block">
+        <button type="submit" class="btn btn-primary btn-sm">追加</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="hideForm()">キャンセル</button>
+    </div>
+
+</form>

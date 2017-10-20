@@ -1,0 +1,61 @@
+<form #createTaskRecordForm="ngForm">
+    <div class="row no-gutters">
+        <input type="hidden" [name]="order_id" [(ngModel)]="taskRecord.order_id"
+               [value]="order.id"
+               [ngModelOptions]="{standalone: true}">
+        <div class="row mb-1">
+            <div class="col">
+                <div class="input-group data">
+                    <p-calendar [(ngModel)]="taskRecord.date" name="date"
+                                dateFormat="yy-mm-dd" showButtonBar="true" [showIcon]="true"></p-calendar>
+                </div>
+            </div>
+            <div class="col">
+                <select id="inputTimeTableId" [name]="time_table_id"
+                        [(ngModel)]="taskRecord.time_table_id"
+                        [ngModelOptions]="{standalone: true}"
+                        class="form-control">
+                    <option value='' selected disabled>時間帯を選択</option>
+                    <option *ngFor="let timeTable of timeTables" [value]="timeTable.id">{{ timeTable.time_span
+                        }}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col">
+                <div *ngIf="isTeamTaskBool; else individualTask;">
+                        <select id="inputTeamId" name="team_id" [(ngModel)]="taskRecord.team_id"
+                                [ngModelOptions]="{standalone: true}"
+                                class="form-control">
+                            <option value="" disabled selected>担当を選択</option>
+                            <option *ngFor="let team of teams" [value]="team.id">{{ team.team }}</option>
+                        </select>
+                </div>
+                <ng-template #individualTask>
+                    <select id="inputWorkerId" name="worker_id" [(ngModel)]="taskRecord.worker_id"
+                            [ngModelOptions]="{standalone: true}"
+                            class="form-control">
+                        <option value="" selected disabled>担当を選択</option>
+                        <option *ngFor="let worker of workers" [value]="worker.id">{{ worker.first_name }} {{
+                            worker.last_name }}
+                        </option>
+                    </select>
+                </ng-template>
+            </div>
+            <div class="col">
+                <input mdInput id="inputQuantity" placeholder="枚数" type="number"
+                       [name]="quantity" [(ngModel)]="taskRecord.quantity"
+                       [ngModelOptions]="{standalone: true}"
+                       class="form-control">
+            </div>
+            <div class="col text-right">
+                <button class="btn btn-primary"
+                        (click)="createTaskRecord(taskRecord, order, createTaskRecordForm)">
+                    <i class="fa fa-plus-circle"></i> OK
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

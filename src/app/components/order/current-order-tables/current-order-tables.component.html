@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4" *ngFor="let order of currentOrders; let i of index;">
+        <card title="品番:{{ order.product_number }} - {{ order.content }} | 納期:{{ order.delivery_date | date: 'MM/dd' }}">
+            <div class="row no-gutters">
+                <div class="col-lg-6 col-sm-6 col-md-6">
+                    <div class="mx-auto">
+                        <md-progress-spinner color="warn" [mode]="determinate"
+                                             [value]="order.progress * 100"></md-progress-spinner>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-md-6">
+                    <p class="mb-0">受注総数: {{ order.quantity }} 枚</p>
+                    <p class="mb-0">作業済み: {{ order.totalQuantity }} 枚</p>
+                    <p class="mb-0">達成率: {{ order.progress | percent }}</p>
+                    <p class="mb-1">
+                        <button class="btn btn-primary" (click)="goToCreateTaskRecord(order)"><i
+                                class="fa fa-pencil-square-o"></i> 作業実績入力
+                        </button>
+                    </p>
+                    <hr>
+                    <p class="mb-0">業務日報を送信</p>
+                    <p class="mb-0">
+                        <app-daily-report-button
+                                [order_id]="order.order_id"
+                        ></app-daily-report-button>
+                    </p>
+                </div>
+            </div>
+        </card>
+    </div>
+</div>

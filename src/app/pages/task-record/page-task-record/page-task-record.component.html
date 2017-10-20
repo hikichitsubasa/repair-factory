@@ -1,0 +1,123 @@
+<div class="row mb-2">
+    <div class="col-lg-12">
+        <button class="btn btn-secondary"
+                (click)="goBack()"><i class="fa fa-arrow-left"></i> 戻る
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8 col-md-12 col-sm-12">
+        <card title="オーダー内容">
+            <app-order-detail-table [order]="order"></app-order-detail-table>
+        </card>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+        <card title="作業達成率">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <app-progress
+                            [order]="order"
+                            [completedQuantity]="completedQuantity"
+                            [overtimeSumQuantityByOrderId]="overtimeSumQuantityByOrderId"
+                            [overtimeSumQuantity]="overtimeSumQuantity"
+                    ></app-progress>
+                </div>
+            </div>
+        </card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6">
+        <card title="1日の作業目標達成率">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <app-daily-target-progress
+                            [order]="order" [date]="date"
+                            [dailyQuantity]="dailyQuantity"
+                            [dailyOvertimeQuantity]="dailyOvertimeQuantity"
+                            (changeDate$)="changeDate($event)"
+                    ></app-daily-target-progress>
+                </div>
+            </div>
+        </card>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-6">
+        <card title="業務日報送信">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                    <app-daily-report-button
+                            [id]="id"></app-daily-report-button>
+                </div>
+            </div>
+        </card>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12 mb-1">
+        <card title="作業実績">
+            <card title="作業実績入力">
+                <app-task-record-new
+                        [order]="order"
+                        (createTaskRecord$)="createTaskRecord($event)"></app-task-record-new>
+            </card>
+            <div *ngIf="isEditTaskRecord">
+                <card title="作業実績編集">
+                    <app-task-record-edit
+                            [order]="order"
+                            [selectedTaskRecord]="selectedTaskRecord"
+                            [isTeamTask]="isTeamTask"
+                            (updateTaskRecord$)="updateTaskRecord($event)"
+                            (cancelEditTaskRecord$)="cancelEditTaskRecord($event)"
+                    ></app-task-record-edit>
+                </card>
+            </div>
+            <app-task-record-list-by-order-id
+                    [taskRecordsByOrderId]="taskRecordsByOrderId"
+                    [order]="order"
+                    (deleteTaskRecord$)="deleteTaskRecord($event)"
+                    (selectTaskRecord$)="selectTaskRecord($event)"
+            ></app-task-record-list-by-order-id>
+
+
+        </card>
+    </div>
+
+    <div class="col-lg-6 col-md-12 col-sm-12 mb-1">
+        <card title="残業記録">
+            <card title="残業記録入力">
+                <app-task-record-overtime-new
+                        [order]="order"
+                        (createOvertime$)="createOvertime($event)"></app-task-record-overtime-new>
+            </card>
+            <div *ngIf="isEditOvertime">
+                <card title="残業記録編集">
+                    <app-overtime-edit
+                            [order]="order"
+                            [selectedOvertime]="selectedOvertime"
+                            (updateOvertime$)="updateOvertime($event)"
+                            (cancelEditOvertime$)="cancelEditOvertime($event)"
+                    ></app-overtime-edit>
+                </card>
+            </div>
+            <app-overtime-list
+                    [overtimeRecordsByOrderId]="overtimeRecordsByOrderId"
+                    (deleteOvertime$)="deleteOvertime($event)"
+                    (selectOvertime$)="selectOvertime($event)"
+            ></app-overtime-list>
+        </card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <card title="作業実績グラフ">
+            <app-task-record-graph-by-order-id
+                    [order]="order"
+                    [taskRecordGraphDataByOrderId]="taskRecordGraphDataByOrderId"
+                    [barChartData]="barChartData"
+                    [options]="options"
+            ></app-task-record-graph-by-order-id>
+        </card>
+    </div>
+
+</div>

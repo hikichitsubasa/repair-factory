@@ -1,0 +1,51 @@
+<form #f="ngForm">
+  <div class="row no-gutters">
+    <input type="hidden" [name]="order_id" [(ngModel)]="selectedOvertime.order_id"
+           [ngModelOptions]="{standalone: true}">
+    <div class="row mb-1">
+      <div class="col">
+        <div class="input-group data">
+          <p-calendar [(ngModel)]="selectedOvertime.overtime_date" name="overtime_date"
+                      dateFormat="yy-mm-dd" showButtonBar="true" [showIcon]="true"></p-calendar>
+        </div>
+      </div>
+      <div class="col">
+        <input mdInput id="inputOvertimeHours" placeholder="時間" type="number"
+               [name]="overtime_hours" [(ngModel)]="selectedOvertime.overtime_hours"
+               [ngModelOptions]="{standalone: true}"
+               class="form-control">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+          <select id="inputWorkerId" name="worker_id" [(ngModel)]="selectedOvertime.worker_id"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control">
+            <option value="" selected disabled>担当を選択</option>
+            <option *ngFor="let worker of workers" [value]="worker.id">{{ worker.first_name }} {{
+              worker.last_name }}
+            </option>
+          </select>
+      </div>
+      <div class="col">
+        <input mdInput id="inputOvertimeQuantity" placeholder="枚数" type="number"
+               [name]="overtime_quantity" [(ngModel)]="selectedOvertime.overtime_quantity"
+               [ngModelOptions]="{standalone: true}"
+               class="form-control">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary"
+                (click)="updateOvertime(selectedOvertime);"><i
+                class="fa fa-refresh"></i> 更新
+        </button>
+        <button class="btn btn-secondary"
+                (click)="cancelEditOvertime()"><i
+                class="fa fa-close"></i> キャンセル
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

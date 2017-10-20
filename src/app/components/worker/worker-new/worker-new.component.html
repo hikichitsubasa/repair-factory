@@ -1,0 +1,61 @@
+<form #createWorkerForm="ngForm" (submit)="createWorker(newWorker); createWorkerForm.reset()">
+    <div class="form-group">
+        <label for="firstName" class="col-form-label mb-0">First Name</label>
+        <md-input-container>
+            <input id="firstName" name="first_name" [(ngModel)]="newWorker.first_name"
+                   mdInput type="text">
+        </md-input-container>
+    </div>
+
+    <div class="form-group">
+        <label for="lastName" class="col-form-label mb-0">Last Name</label>
+        <md-input-container>
+            <input id="lastName" name="last_name" [(ngModel)]="newWorker.last_name"
+                   mdInput type="text">
+        </md-input-container>
+    </div>
+
+    <div class="form-group">
+        <label for="birthday" class="col-form-label mb-0">誕生日</label>
+        <md-input-container class="mb-2">
+            <input mdInput id="birthday" placeholder="1/31/1989" [mdDatepicker]="birthdayDatepicker"
+                   name="birthday" [(ngModel)]="newWorker.birthday"
+            >
+            <button mdSuffix [mdDatepickerToggle]="birthdayDatepicker"></button>
+        </md-input-container>
+        <md-datepicker #birthdayDatepicker touchUi="true" (dateInput)="showDate(birthday)"></md-datepicker>
+    </div>
+
+    <button type="submit" md-raised-button color="accent">Submit</button>
+</form>
+
+<!--<form #editWorkerForm="ngForm" (submit)="editWorker(editWorker); editWorkerForm.reset()">-->
+    <!--<div class="form-group">-->
+        <!--<label for="editfirstName" class="col-form-label mb-0">First Name</label>-->
+        <!--<md-input-container>-->
+            <!--<input id="editfirstName" name="first_name" [(ngModel)]="editWorker.first_name"-->
+                   <!--mdInput type="text">-->
+        <!--</md-input-container>-->
+    <!--</div>-->
+
+    <!--<div class="form-group">-->
+        <!--<label for="editlastName" class="col-form-label mb-0">Last Name</label>-->
+        <!--<md-input-container>-->
+            <!--<input id="editlastName" name="last_name" [(ngModel)]="editWorker.last_name"-->
+                   <!--mdInput type="text">-->
+        <!--</md-input-container>-->
+    <!--</div>-->
+
+    <!--<div class="form-group">-->
+        <!--<label for="editbirthday" class="col-form-label mb-0">誕生日</label>-->
+        <!--<md-input-container class="mb-2">-->
+            <!--<input mdInput id="editbirthday" placeholder="1/31/1989" [mdDatepicker]="birthdayDatepicker"-->
+                   <!--name="birthday" [(ngModel)]="editWorker.birthday"-->
+            <!--&gt;-->
+            <!--<button mdSuffix [mdDatepickerToggle]="birthdayDatepicker"></button>-->
+        <!--</md-input-container>-->
+        <!--<md-datepicker #birthdayDatepicker touchUi="true" (dateInput)="showDate(birthday)"></md-datepicker>-->
+    <!--</div>-->
+
+    <!--<button type="submit" md-raised-button color="accent">Submit</button>-->
+<!--</form>-->

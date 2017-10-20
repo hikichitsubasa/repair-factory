@@ -1,0 +1,40 @@
+<p-dataTable [value]="overtimeRecordsByOrderId"
+             [rows]="20"
+             [paginator]="true"
+             [rowsPerPageOptions]="[5, 10, 20]"
+             [globalFilter]="gb" #dt
+             class="">
+  <!--<p-header>-->
+    <!--<div class="ui-widget-header ui-helper-clearfix"-->
+         <!--style="padding:4px 10px;border: 0 none;">-->
+      <!--<div class="" style="float: right;">-->
+        <!--<i class="fa fa-search" style="margin:4px 4px 0 0"></i>-->
+        <!--<input #gb type="text" pInputText size="30" placeholder="フィルター">-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</p-header>-->
+  <p-column field="overtime_date" header="日付" [sortable]="true">
+    <ng-template let-overtimeRecord="rowData" pTemplate="body">
+      {{ overtimeRecord.overtime_date | date:'MM/dd' }}
+    </ng-template>
+  </p-column>
+  <p-column field="overtime_hours" header="残業時間">
+    <ng-template let-overtimeRecord="rowData" pTemplate="body">
+      {{ overtimeRecord.overtime_hours }} 時間
+    </ng-template>
+  </p-column>
+  <p-column [sortable]="true" field="worker" header="個人名">
+    <ng-template let-overtimeRecord="rowData" pTemplate="body">
+      {{ overtimeRecord.first_name }} {{ overtimeRecord.last_name }}
+    </ng-template>
+  </p-column>
+  <p-column field="overtime_quantity" header="枚数" [sortable]="true">
+  </p-column>
+  <p-column>
+    <ng-template pTemplate="header" let-overtimeRecord="rowData" pTemplate="body">
+      <button class="btn btn-sm btn-info" (click)="selectOvertime(overtimeRecord)"><i class="fa fa-pencil"></i></button>
+      <button class="btn btn-sm btn-danger" (click)="deleteOvertime(overtimeRecord)"><i class="fa fa-trash-o"></i>
+      </button>
+    </ng-template>
+  </p-column>
+</p-dataTable>

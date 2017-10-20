@@ -1,0 +1,46 @@
+  <form #createOvertimeForm="ngForm">
+    <div class="row no-gutters">
+      <input type="hidden" [name]="order_id" [(ngModel)]="overtime.order_id"
+             [value]="order.id"
+             [ngModelOptions]="{standalone: true}">
+      <div class="row mb-1">
+        <div class="col">
+          <div class="input-group data">
+            <p-calendar [(ngModel)]="overtime.overtime_date" name="overtime_date"
+                        dateFormat="yy-mm-dd" showButtonBar="true" [showIcon]="true"></p-calendar>
+          </div>
+        </div>
+        <div class="col">
+          <input mdInput id="inputOvertimeHours" placeholder="残業時間" type="number"
+                 [name]="overtime_hours" [(ngModel)]="overtime.overtime_hours"
+                 [ngModelOptions]="{standalone: true}"
+                 class="form-control">
+        </div>
+      </div>
+
+      <div class="row no-gutters">
+        <div class="col">
+            <select id="inputWorkerId" name="worker_id" [(ngModel)]="overtime.worker_id"
+                    [ngModelOptions]="{standalone: true}"
+                    class="form-control">
+              <option value="" selected disabled>担当を選択</option>
+              <option *ngFor="let worker of workers" [value]="worker.id">{{ worker.first_name }} {{
+                worker.last_name }}
+              </option>
+            </select>
+        </div>
+        <div class="col">
+          <input mdInput id="inputQuantity" placeholder="枚数" type="number"
+                 [name]="overtime_quantity" [(ngModel)]="overtime.overtime_quantity"
+                 [ngModelOptions]="{standalone: true}"
+                 class="form-control">
+        </div>
+        <div class="col text-right">
+          <button class="btn btn-primary"
+                  (click)="createOvertime(overtime, order, createOvertimeForm);">
+            <i class="fa fa-plus-circle"></i> OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>

@@ -1,0 +1,28 @@
+<div class="table-responsive">
+    <table class="table table-sm table-bordered">
+        <thead>
+        <tr>
+            <th>品番</th>
+            <th>納期</th>
+            <th>取引先</th>
+            <th>数量</th>
+            <th>補修内容</th>
+            <th>作業場所</th>
+            <th>割当</th>
+            <th>一日の目標作業枚数</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ order.product_number }}</td>
+            <td>{{ order.delivery_date | date: "MM/dd" }}</td>
+            <td>{{ order.name }}</td>
+            <td>{{ order.quantity }} 枚</td>
+            <td>{{ order.content }}</td>
+            <td>{{ order.work_place }}</td>
+            <td>{{ order.is_team_task }}</td>
+            <td>{{ order.daily_target_quantity }} 枚</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

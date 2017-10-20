@@ -1,20 +1,33 @@
-<card title="本日の作業実績">
-  <div class="table-responsive">
-    <table class="table table-sm">
-      <thead>
-      <tr>
-        <th>品番</th>
-        <th>補修内容</th>
-        <th>枚数/達成率</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let dailyTaskRecord of dailyTaskRecords">
-        <td>{{ dailyTaskRecord.number }}</td>
-        <td>{{ dailyTaskRecord.repair_content }}</td>
-        <td>{{ dailyTaskRecord.amount }}枚 / {{ dailyTaskRecord.progress }}%</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</card>
+<p-dataTable [value]="dailyTaskRecords"
+             [rows]="10"
+             [paginator]="true"
+             [rowsPerPageOptions]="[5, 10, 20]"
+             [globalFilter]="gb" #dt
+             selectionMode="single"
+             [(selection)]="selectedTaskRecord"
+             (onRowClick)="goToTaskRecord($event)"
+             class="daily-task-record-table">
+    <p-header>
+        <div class="ui-widget-header left ui-helper-clearfix" style="padding:4px 10px;border: 0 none;">
+            <p-calendar [(ngModel)]="date" name="date"
+                        (onSelect)="changeDate(date)"
+                        dateFormat="yy-mm-dd"
+                        [monthNavigator]="true"
+                        showButtonBar="true" [showIcon]="true"></p-calendar>
+        </div>
+    </p-header>
+    <p-column field="product_number" header="品番"></p-column>
+    <p-column field="content" header="補修内容" [sortable]="true"></p-column>
+    <p-column field="quantity" header="数量">
+        <ng-template let-record="rowData" pTemplate="body">
+            {{ record.quantity }} 枚
+        </ng-template>
+    </p-column>
+    <p-column field="progress" header="目標達成率" [sortable]="true">
+        <ng-template let-col let-dailyTaskRecord="rowData" pTemplate="body">
+            <p-progressBar [value]="dailyTaskRecord.progress | number:'1.1-2'"></p-progressBar>
+        </ng-template>
+    </p-column>
+</p-dataTable>
+
+

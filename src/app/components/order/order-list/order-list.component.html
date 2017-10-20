@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-lg-12">
+        <card title="オーダー一覧">
+            <p-dataTable [value]="orders"
+                         [rows]="10"
+                         [paginator]="true"
+                         [rowsPerPageOptions]="[5, 10, 20]"
+                         [globalFilter]="gb" #dt
+                         selectionMode="single"
+                         [(selection)]="selectedOrder"
+                         (onRowClick)="goToTaskRecord($event)"
+                         [responsive]="true"
+                         class="order-list">
+                <p-header>
+                    <div class="ui-widget-header left ui-helper-clearfix" style="padding:4px 10px;border: 0 none;">
+                        <div style="float: right;">
+                            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                            <input #gb type="text" pInputText size="30" placeholder="フィルター">
+                        </div>
+                        <button class="btn btn-primary btn-sm"
+                                routerLink="/admin/order-new"
+                                style="float: left;">新規オーダー登録
+                        </button>
+                    </div>
+                </p-header>
+                <p-column field="order_date" header="受注日" [sortable]="true">
+                    <ng-template let-order="rowData" pTemplate="body">
+                        {{ order.order_date | date:'MM/dd' }}
+                    </ng-template>
+                </p-column>
+                <p-column field="delivery_date" header="納期" [sortable]="true">
+                    <ng-template let-order="rowData" pTemplate="body">
+                        {{ order.delivery_date | date:'MM/dd' }}
+                    </ng-template>
+                </p-column>
+                <p-column field="name" header="取引先" [sortable]="true"></p-column>
+                <p-column field="product_number" header="品番"></p-column>
+                <p-column field="order_quantity" header="数量"></p-column>
+                <p-column field="content" header="補修内容" [sortable]="true"></p-column>
+                <p-column field="work_place" header="作業場所"></p-column>
+                <p-column field="start_date" header="作業開始日">
+                    <ng-template let-order="rowData" pTemplate="body">
+                        {{ order.start_date | date:'MM/dd' }}
+                    </ng-template>
+                </p-column>
+                <p-column field="is_team_task" header="割当">
+                    <ng-template let-order="rowData" pTemplate="body">
+                        <p [ngSwitch]="order.is_team_task">
+                            <span *ngSwitchCase="'1'">個人</span>
+                            <span *ngSwitchCase="'2'">チーム制</span>
+                        </p>
+                    </ng-template>
+                </p-column>
+                <p-column field="progress" header="進捗" [sortable]="true">
+                    <ng-template let-order="rowData" pTemplate="body">
+                        <p-progressBar [value]="order.progress | number: '1.1-2'"></p-progressBar>
+                    </ng-template>
+                </p-column>
+                <!--<p-column field="complete_date" header="作業完了日" [sortable]="true">-->
+                    <!--<ng-template let-order="rowData" pTemplate="body">-->
+                        <!--{{ order.complete_date | date:'MM/dd' }}-->
+                    <!--</ng-template>-->
+                <!--</p-column>-->
+                <p-column field="complete_button">
+                    <ng-template let-order="rowData" pTemplate="body">
+                        <button type="button"
+                                class="btn btn-primary btn-sm"
+                                (click)="onCompleteOrder(order)"
+                                [disabled]="isCompleted(order)">納品完了
+                        </button>
+                    </ng-template>
+                </p-column>
+                <p-column>
+                    <ng-template pTemplate="body" let-order="rowData">
+                        <button type="button"
+                                class="btn btn-info btn-sm"
+                                (click)="goToEdit(order)">
+                            <i class="fa fa-pencil"> 編集</i>
+                        </button>
+                        <!--<button type="button"-->
+                                <!--class="btn btn-sm btn-danger"-->
+                                <!--(click)="deleteOrder(order)">-->
+                            <!--<i class="fa fa-trash-o"> 削除</i>-->
+                        <!--</button>-->
+                    </ng-template>
+                </p-column>
+            </p-dataTable>
+        </card>
+    </div>
+</div>
+
+

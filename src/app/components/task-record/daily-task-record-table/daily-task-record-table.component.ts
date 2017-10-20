@@ -1,27 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import {SharedService} from "../../../layouts/shared.service";
-import {DailyTaskRecordService} from "../daily-task-record.service";
-import {DailyTaskRecord} from "./daily-task-record";
+import {Component, OnInit, Input} from '@angular/core';
+import {TaskRecord} from "../../../shared/task-record/task-record";
+import {TaskRecordService} from "../../../shared/task-record/task-record.service";
+import {Response} from "@angular/http";
+import {DatePipe} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'daily-task-record-table',
-  templateUrl: './daily-task-record-table.component.html',
-  styleUrls: ['./daily-task-record-table.component.scss'],
-  providers: [DailyTaskRecordService]
+    selector: 'daily-task-record-table',
+    templateUrl: './daily-task-record-table.component.html',
+    styleUrls: ['./daily-task-record-table.component.scss'],
+    providers: [TaskRecordService]
 })
 
 
 export class DailyTaskRecordTableComponent implements OnInit {
-  dailyTaskRecords: DailyTaskRecord[];
+    dailyTaskRecords: TaskRecord[];
+    selectedTaskRecord: any[];
+    date = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
 
-  constructor( private dailyTaskRecordService: DailyTaskRecordService){}
+    constructor(private _taskRecordService: TaskRecordService,
+                public datePipe: DatePipe,
+                private router: Router) {
+    }
 
-  getDailyTaskRecords(): void{
-    this.dailyTaskRecords = this.dailyTaskRecordService.getDailyTaskRecords();
-  }
+    ngOnInit() {
+        this.getDailyTaskRecords(this.date);
+    }
 
-  ngOnInit(): void {
-    this.getDailyTaskRecords();
-  }
+    getDailyTaskRecords(date) {
+        this._taskRecordService.getDailyTaskRecords(date)
+            .subscribe(
+                (dailyTaskRecords) => this.dailyTaskRecords = dailyTaskRecords,
+                (err: Response) => console.log(err)
+            )
+    }
+
+    changeDate(date) {
+        this.date = this.datePipe.transform(date, 'yyyy-MM-dd');
+        this.getDailyTaskRecords(this.date);
+    }
+
+    goToTaskRecord(event) {
+        this.router.navigate(['/admin/task-record/' + event.data.id, {date: this.date}]);
+    }
 
 }

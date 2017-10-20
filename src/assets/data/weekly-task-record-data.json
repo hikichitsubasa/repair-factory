@@ -1,0 +1,66 @@
+[
+  {
+    "date": "2017-09-04",
+    "product_number":32121,
+    "repair_content": "飛び込み",
+    "amount": 100,
+    "progress": 20,
+    "team": "A"
+  },
+  {
+    "date": "2017-09-05",
+    "product_number":4546451,
+    "repair_content": "飛び込み",
+    "amount": 200,
+    "progress": 39,
+    "team": "A"
+  },
+  {
+    "date": "2017-09-06",
+    "product_number":6464633,
+    "repair_content": "飛び込み",
+    "amount": 150,
+    "progress": 1,
+    "team": "B"
+  },
+  {
+    "date": "2017-09-07",
+    "product_number":890789,
+    "repair_content": "飛び込み",
+    "amount": 300,
+    "progress": 51,
+    "team": "C"
+  },
+  {
+    "date": "2017-09-08",
+    "product_number":32121,
+    "repair_content": "飛び込み",
+    "amount": 100,
+    "progress": 20,
+    "team": "個人"
+  },
+  {
+    "date": "2017-09-04",
+    "product_number":4546451,
+    "repair_content": "飛び込み",
+    "amount": 200,
+    "progress": 39,
+    "team": "個人"
+  },
+  {
+    "date": "2017-09-05",
+    "product_number":6464633,
+    "repair_content": "飛び込み",
+    "amount": 150,
+    "progress": 1,
+    "team": "C"
+  },
+  {
+    "date": "2017-09-06",
+    "product_number":890789,
+    "repair_content": "飛び込み",
+    "amount": 300,
+    "progress": 51,
+    "team": "B"
+  }
+]

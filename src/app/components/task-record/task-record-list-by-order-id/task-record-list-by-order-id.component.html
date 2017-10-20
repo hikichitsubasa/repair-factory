@@ -1,0 +1,39 @@
+<p-dataTable [value]="taskRecordsByOrderId"
+             [rows]="20"
+             [paginator]="true"
+             [rowsPerPageOptions]="[5, 10, 20]"
+             [globalFilter]="gb" #dt
+             class="">
+    <!--<p-header>-->
+        <!--<div class="ui-widget-header ui-helper-clearfix"-->
+             <!--style="padding:4px 10px;border: 0 none;">-->
+            <!--<div class="" style="float: right;">-->
+                <!--<i class="fa fa-search" style="margin:4px 4px 0 0"></i>-->
+                <!--<input #gb type="text" pInputText size="30" placeholder="フィルター">-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</p-header>-->
+
+    <p-column field="date" header="日付" >
+        <ng-template let-taskRecord="rowData" pTemplate="body"><!--[sortable]="true"-->
+            {{ taskRecord.date | date:'MM/dd' }}
+        </ng-template>
+    </p-column>
+    <p-column field="time_span" header="作業時間"></p-column>
+    <p-column *ngIf="isTeamTask" field="team" header="チーム名"><!--[sortable]="true"-->
+    </p-column>
+    <p-column *ngIf="!isTeamTask" field="worker" header="個人名"><!--[sortable]="true" [filter]="true" filterPlaceholder="Search" filterMatchMode="contains"-->
+        <ng-template let-taskRecord="rowData" pTemplate="body">
+            {{ taskRecord.first_name }} {{ taskRecord.last_name }}
+        </ng-template>
+    </p-column>
+    <p-column field="quantity" header="枚数">
+    </p-column>
+    <p-column>
+        <ng-template pTemplate="header" let-taskRecord="rowData" pTemplate="body">
+            <button class="btn btn-sm btn-info" (click)="selectTaskRecord(taskRecord)"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-sm btn-danger" (click)="deleteTaskRecord(taskRecord)"><i class="fa fa-trash-o"></i>
+            </button>
+        </ng-template>
+    </p-column>
+</p-dataTable>

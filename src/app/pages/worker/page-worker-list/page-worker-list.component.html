@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <card title="従業員一覧">
+            <app-worker-list [workers]="workers"
+                             (onEditWorker$)="onEditWorker(editWorker)"></app-worker-list>
+        </card>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <card title="従業員追加・編集">
+            <app-worker-new (createWorker$)="createWorker($event)"
+                            [editWorker]="editWorker"></app-worker-new>
+        </card>
+    </div>
+</div>
+
