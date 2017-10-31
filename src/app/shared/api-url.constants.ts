@@ -1,1 +1,1 @@
-export const apiUrl = "https://boo-mangetsu.ssl-lolipop.jp/repair/backend/public/api/";
+export const apiUrl = "https://boo-mangetsu.ssl-lolipop.jp/repair/backend/public/api";
