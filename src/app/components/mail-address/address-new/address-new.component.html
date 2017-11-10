@@ -1,0 +1,14 @@
+<form #createAddressForm (submit)="createAddress(newAddress);createAddressForm.reset()">
+  <div class="w-50 d-inline-block">
+    <input type="text"
+           name="address"
+           class="form-control"
+           placeholder="メールアドレスを入力"
+           [(ngModel)]="newAddress.address">
+  </div>
+  <div class="d-inline-block">
+    <button type="submit" class="btn btn-primary btn-sm">追加</button>
+    <button type="button" class="btn btn-secondary btn-sm"
+            (click)="hideForm()">キャンセル</button>
+  </div>
+</form>

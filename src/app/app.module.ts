@@ -123,6 +123,8 @@ import {TaskRecordService} from "./shared/task-record/task-record.service";
 import {TeamService} from "./shared/team/team.service";
 import {TimeTableService} from "./shared/time-table/time-table.service";
 import {WorkerService} from "./shared/worker/worker.service";
+import {MailAddressService} from "./shared/mail-address/mail-address.service";
+
 
 import {ContentComponent} from './components/content/content/content.component';
 import {ContentDetailComponent} from './components/content/content-detail/content-detail.component';
@@ -163,6 +165,9 @@ import {TaskRecordGraphByOrderIdComponent} from './components/task-record/task-r
 import {DailyReportButtonComponent} from './components/daily-report/daily-report-button/daily-report-button.component';
 import {MonthlyOvertimeListComponent} from './components/overtime/monthly-overtime-list/monthly-overtime-list.component';
 import {SettingComponent} from './pages/admin/setting/setting.component';
+import { AddressComponent } from './components/mail-address/address/address.component';
+import {AddressListComponent} from "./components/mail-address/address-list/address-list.component";
+import {AddressNewComponent} from "./components/mail-address/address-new/address-new.component";
 
 
 
@@ -306,6 +311,9 @@ import {SettingComponent} from './pages/admin/setting/setting.component';
         DailyReportButtonComponent,
         MonthlyOvertimeListComponent,
         SettingComponent,
+        AddressComponent,
+        AddressListComponent,
+        AddressNewComponent
     ],
     exports: [
         NG_TABLE_DIRECTIVES
@@ -321,7 +329,8 @@ import {SettingComponent} from './pages/admin/setting/setting.component';
         TeamService,
         TimeTableService,
         WorkerService,
-        DatePipe
+        DatePipe,
+        MailAddressService
     ],
     entryComponents: [DialogComponent],
     bootstrap: [AppComponent]

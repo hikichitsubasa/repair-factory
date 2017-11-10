@@ -1,0 +1,25 @@
+<p-dataTable [value]="addresses"
+             [rows]="20"
+             [paginator]="true"
+             [rowsPerPageOptions]="[5, 10, 20]"
+             [editable]="true"
+             (onEditComplete)="updateAddress($event)"
+             [resizableColumns]="true"
+             class="address-list-table">
+  <p-header>
+    <div class="ui-widget-header ui-helper-clearfix"
+         style="padding:4px 10px;border: 0 none;">
+      <app-address-new (createAddress$)="createAddress($event)"></app-address-new>
+    </div>
+  </p-header>
+  <p-column field="address" header="メールアドレス" [style]="{'width': '75%'}"
+            [sortable]="true"
+            [editable]="true">
+  </p-column>
+  <p-column>
+    <ng-template pTemplate="header" let-address="rowData" pTemplate="body">
+      <button class="btn btn-sm btn-danger" (click)="deleteAddress(address)"><i class="fa fa-trash-o"></i>
+      </button>
+    </ng-template>
+  </p-column>
+</p-dataTable>
