@@ -9,7 +9,6 @@ import {Response} from "@angular/http";
 })
 export class WorkerListComponent implements OnInit {
     @Input() workers;
-    @Output() onEditWorker$ = new EventEmitter();
 
     constructor(private _workerService: WorkerService) {
     }
@@ -26,16 +25,8 @@ export class WorkerListComponent implements OnInit {
             )
     }
 
-    onEditWorker(worker){
-        console.log(worker);
-        this.onEditWorker$.emit(worker);
-
-    }
-
-    deleteWorker(worker) {
-        this._workerService.deleteWorker(worker)
-            .then(status => this.getWorkers())
-            .catch(err => console.log(err));
+    updateWorker(worker){
+        this._workerService.updateWorker(worker.data);
     }
 
 

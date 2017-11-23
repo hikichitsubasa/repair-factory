@@ -1,31 +1,21 @@
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <!--<th></th>-->
-            <th>名前</th>
-            <th>誕生日</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let worker of workers">
-            <!--<td>-->
-            <!--<img md-list-avatar src="http://lorempixel.com/40/40" width="40" height="40" alt="">-->
-            <!--</td>-->
-            <td>{{ worker.first_name }} {{ worker.last_name }}</td>
-            <td>{{ worker.birthday }}</td>
-            <td>
-                <button class="btn btn-sm btn-info"
-                        (click)="onEditWorker(worker)">
-                    <i class="fa fa-pencil"></i>
-                </button>
-                <button class="btn btn-sm btn-danger"
-                        (click)="deleteWorker(worker)">
-                    <i class="fa fa-trash-o"></i>
-                </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+<p-dataTable [value]="workers"
+             [rows]="20"
+             [paginator]="true"
+             [rowsPerPageOptions]="[5, 10, 20]"
+             [editable]="true"
+             (onEditComplete)="updateWorker($event)"
+             [resizableColumns]="true"
+             class="worker-list-table">
+    <p-column field="first_name" header="" [style]="{'width': '75%'}"
+              [sortable]="true"
+              [editable]="true">
+    </p-column>
+    <p-column field="last_name" header="" [style]="{'width': '75%'}"
+              [sortable]="true"
+              [editable]="true">
+    </p-column>
+    <p-column field="birthday" header="" [style]="{'width': '75%'}"
+              [sortable]="true"
+              [editable]="true">
+    </p-column>
+</p-dataTable>
