@@ -54,17 +54,17 @@ export const MAINMENUITEMS: MainMenuItem[] = [
         budge: '',
         budgeColor: ''
     },
-    {
-        title: '財務管理',
-        icon: 'fa fa-money',
-        active: false,
-        groupTitle: false,
-        sub: '',
-        routing: '/admin/finance',
-        externalLink: '',
-        budge: '',
-        budgeColor: ''
-    },
+    // {
+    //     title: '財務管理',
+    //     icon: 'fa fa-money',
+    //     active: false,
+    //     groupTitle: false,
+    //     sub: '',
+    //     routing: '/admin/finance',
+    //     externalLink: '',
+    //     budge: '',
+    //     budgeColor: ''
+    // },
     {
         title: '設定',
         icon: 'fa fa-gear',
