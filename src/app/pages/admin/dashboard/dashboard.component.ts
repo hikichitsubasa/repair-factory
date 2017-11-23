@@ -27,7 +27,6 @@ export class AdminDashboardComponent implements OnInit {
             .subscribe(
                 (monthlySales) => {
                     this.monthlySales = monthlySales;
-                    console.log(this.monthlySales);
                 }
             );
         return this.monthlySales;
